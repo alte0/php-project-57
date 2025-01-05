@@ -4,8 +4,7 @@ start:
 start-frontend:
 	npm run dev
 
-setup:
-	composer install
+setup:install
 	cp -n .env.example .env
 	php artisan key:gen --ansi
 	touch database/database.sqlite
@@ -14,6 +13,9 @@ setup:
 	npm ci
 	npm run build
 	make ide-helper
+
+install:
+	composer install
 
 watch:
 	npm run watch
