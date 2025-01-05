@@ -32,8 +32,8 @@ log:
 test:
 	php artisan test
 
-test-coverage:
-	XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
+#test-coverage:
+	#XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
 
 lint:
 	composer phpcs
@@ -43,8 +43,8 @@ lint:
 lint-fix:
 	composer phpcbf
 
-#test-coverage:
-	#XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+test-coverage:
+	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
 
 compose:
 	docker-compose up
