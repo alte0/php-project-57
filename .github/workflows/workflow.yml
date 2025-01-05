@@ -26,7 +26,7 @@ jobs:
           php-version: '8.1'
       - name: Install
         # Install project
-        run: make install
+        run: make setup
       - name: Run linter
         # Run Linter
         run: make lint
