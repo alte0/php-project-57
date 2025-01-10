@@ -30,6 +30,8 @@ class ProfileTest extends TestCase
             ->patch('/profile', [
                 'name' => 'Test User',
                 'email' => 'test@example.com',
+                'password' => $user->getAuthPassword(),
+                'password_confirmation' => $user->getAuthPassword(),
             ]);
 
         $response
@@ -52,6 +54,8 @@ class ProfileTest extends TestCase
             ->patch('/profile', [
                 'name' => 'Test User',
                 'email' => $user->email,
+                'password' => $user->getAuthPassword(),
+                'password_confirmation' => $user->getAuthPassword(),
             ]);
 
         $response
