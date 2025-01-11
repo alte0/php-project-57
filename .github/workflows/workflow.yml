@@ -50,7 +50,7 @@ jobs:
       - name: Install
         # Install project
         run:
-          make workflow && make startNoWait
+          make workflow
       - name: Run linter
         # Run Linter
         run: make lint
@@ -63,6 +63,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make startNoWait && make test-coverage
+          coverageCommand: make test-coverage
           coverageLocations: ${{github.workspace}}/build/logs/clover.xml:clover
           debug: true
