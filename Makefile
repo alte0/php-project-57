@@ -2,7 +2,7 @@ start:
 	php artisan serve --host 0.0.0.0
 
 startNoWait:
-	php artisan serve --host 0.0.0.0 --no-wait
+	php artisan serve --host 0.0.0.0 &
 
 start-frontend:
 	npm run dev
