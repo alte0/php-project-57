@@ -5,12 +5,25 @@ name: PHP CI
 on:
   - push
   - pull_request
-
 jobs:
   build:
-
     # The type of machine to run the job on
     runs-on: ubuntu-20.04
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: php_project_57
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
         # Check-out repository under GitHub workspace
@@ -26,7 +39,15 @@ jobs:
           php-version: '8.2'
       - name: Install
         # Install project
+        env:
+          DB_CONNECTION: pgsql
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_DATABASE: php_project_57
+          DB_USERNAME: postgres
+          DB_PASSWORD: password
         run:
+          make copyEnv
           make workflow
           make start
       - name: Run linter

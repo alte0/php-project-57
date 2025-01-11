@@ -4,8 +4,7 @@ start:
 start-frontend:
 	npm run dev
 
-setup:install
-	cp -n .env.example .env
+setup: install copyEnv
 	php artisan key:gen --ansi
 	touch database/database.sqlite
 	php artisan migrate
@@ -18,10 +17,12 @@ install:
 	composer install
 
 workflow:install
-	cp -n .env.example .env
 	php artisan key:gen --ansi
 	php artisan migrate
 	php artisan db:seed
+
+copyEnv:
+	cp -n .env.example .env
 
 install-prod:install
 	cp -n .env.example .env
