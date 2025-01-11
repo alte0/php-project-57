@@ -61,6 +61,12 @@ jobs:
         uses: paambaati/codeclimate-action@v8.0.0
         # Add Code Climate secret key
         env:
+          DB_CONNECTION: pgsql
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_DATABASE: php_project_57
+          DB_USERNAME: postgres
+          DB_PASSWORD: password
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
