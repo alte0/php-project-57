@@ -17,11 +17,15 @@ setup:install
 install:
 	composer install
 
-install-prod:install
+workflow:install
+	cp -n .env.example .env
 	php artisan key:gen --ansi
 	php artisan migrate
 	php artisan db:seed
-	make ide-helper
+
+install-prod:install
+	cp -n .env.example .env
+	php artisan key:gen --ansi
 
 watch:
 	npm run watch
