@@ -37,6 +37,9 @@ jobs:
         with:
           # Specify the PHP version
           php-version: '8.2'
+      - name: Copy env
+        run:
+          make copyEnv
       - name: Install
         # Install project
         env:
@@ -47,7 +50,6 @@ jobs:
           DB_USERNAME: postgres
           DB_PASSWORD: password
         run:
-          make copyEnv
           make workflow
           make start
       - name: Run linter
