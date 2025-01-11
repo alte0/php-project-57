@@ -9,6 +9,13 @@ jobs:
   build:
     # The type of machine to run the job on
     runs-on: ubuntu-20.04
+    env:
+      DB_CONNECTION: pgsql
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_DATABASE: php_project_57
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
 
     services:
       postgres:
@@ -42,18 +49,11 @@ jobs:
           make copyEnv
       - name: Install
         # Install project
-        env:
-          DB_CONNECTION: pgsql
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_DATABASE: php_project_57
-          DB_USERNAME: postgres
-          DB_PASSWORD: password
         run:
           make workflow && make startNoWait
       - name: Run linter
         # Run Linter
-        run: make lint
+        run: make startNoWait && make lint
         # Publish code coverage on Code Climate
         # https://github.com/paambaati/codeclimate-action
         # NOTE: uncomment for using workflow
@@ -61,12 +61,6 @@ jobs:
         uses: paambaati/codeclimate-action@v8.0.0
         # Add Code Climate secret key
         env:
-          DB_CONNECTION: pgsql
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_DATABASE: php_project_57
-          DB_USERNAME: postgres
-          DB_PASSWORD: password
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
