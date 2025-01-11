@@ -50,8 +50,7 @@ jobs:
           DB_USERNAME: postgres
           DB_PASSWORD: password
         run:
-          make workflow
-#          make start
+          make workflow && make startNoWait
       - name: Run linter
         # Run Linter
         run: make lint
