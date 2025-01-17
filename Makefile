@@ -26,6 +26,9 @@ workflow:install copyEnv
 	php artisan migrate
 	php artisan db:seed
 
+renderCom: install
+	php artisan key:gen --ansi
+
 copyEnv:
 	cp -n .env.example .env
 

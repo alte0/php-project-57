@@ -17,8 +17,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm i && npm run build
+RUN make renderCom
 
-RUN ls
+RUN npm i && npm run build
 
 CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
