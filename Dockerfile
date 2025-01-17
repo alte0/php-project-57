@@ -17,7 +17,6 @@ WORKDIR /
 
 COPY . .
 
-RUN npm i
-RUN npm run build
+RUN npm i && npm run build
 
 CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
