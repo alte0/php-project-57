@@ -29,10 +29,6 @@ workflow:install copyEnv
 copyEnv:
 	cp -n .env.example .env
 
-install-prod:install
-	cp -n .env.example .env
-	php artisan key:gen --ansi
-
 watch:
 	npm run watch
 
