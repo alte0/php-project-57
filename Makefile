@@ -20,6 +20,8 @@ install:
 	composer install
 
 workflow:install
+	npm i
+	npm run build
 	php artisan key:gen --ansi
 	php artisan migrate
 	php artisan db:seed
