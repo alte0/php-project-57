@@ -19,7 +19,7 @@ setup: install copyEnv
 install:
 	composer install
 
-workflow:install
+workflow:install copyEnv
 	npm i
 	npm run build
 	php artisan key:gen --ansi
