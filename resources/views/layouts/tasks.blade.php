@@ -27,9 +27,18 @@
                         <div class="flex items-center lg:order-2">
                             @if(Route::has('login'))
                                 @auth
-                                    <a href="{{ url('/dashboard') }}"
-                                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    >Dashboard</a>
+                                    <a href="{{ url('/logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+                                    >Выход</a>
+                                    <form
+                                        id="logout-form"
+                                        action="{{ url('/logout') }}"
+                                        method="POST"
+                                        style="display: none;"
+                                    >
+                                        @csrf
+                                    </form>
                                 @else
                                     <a href="{{ route('login') }}"
                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
