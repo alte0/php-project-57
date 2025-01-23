@@ -4,8 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- для ujs --}}
+        <meta name="csrf-param" content="_token">
 
-        <title>{{ config('app.name') }}</title>
+        <title>@lang('task_manager.taskManager')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,7 +23,7 @@
                 <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900 shadow-md">
                     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                         <a href="{{ route('home') }}" class="flex items-center">
-                            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Менеджер задач</span>
+                            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">@lang('task_manager.taskManager')</span>
                         </a>
 
                         <div class="flex items-center lg:order-2">
@@ -30,7 +32,7 @@
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
-                                    >Выход</a>
+                                    >@lang('task_manager.logout')</a>
                                     <form
                                         id="logout-form"
                                         action="{{ url('/logout') }}"
@@ -41,14 +43,12 @@
                                     </form>
                                 @else
                                     <a href="{{ route('login') }}"
-                                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                        Вход
-                                    </a>
+                                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    >@lang('task_manager.logIn')</a>
                                     @if(Route::has('register'))
                                         <a href="{{ route('register') }}"
-                                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
-                                            Регистрация
-                                        </a>
+                                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+                                        >@lang('task_manager.registration')</a>
                                     @endif
                                 @endauth
                             @endif
@@ -58,18 +58,18 @@
                             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                                 <li>
                                     <a href="#tasks"
-                                       class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                        Задачи </a>
+                                       class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0"
+                                    >@lang('task_manager.tasks')</a>
                                 </li>
                                 <li>
-                                    <a href="#task_statuses"
-                                       class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                        Статусы </a>
+                                    <a href="{{ route('task_statuses.index') }}"
+                                       class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0"
+                                    >@lang('task_manager.statuses')</a>
                                 </li>
                                 <li>
                                     <a href="#labels"
-                                       class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
-                                        Метки </a>
+                                       class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0"
+                                    >@lang('task_manager.tags')</a>
                                 </li>
                             </ul>
                         </div>

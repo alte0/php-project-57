@@ -1,0 +1,37 @@
+<?php
+
+return [
+    'taskManager' => 'Task Manager',
+    'tasks' => 'Tasks',
+    'statuses' => 'Statuses',
+    'tags' => 'Tags',
+    'logout' => 'Logout',
+    'logIn' => 'Log In',
+    'registration' => 'Registration',
+    'greeting' => 'Greetings from Hexlet!',
+    'aboutProject' => 'This is a simple Laravel task manager.',
+    'pushBtn' => 'Push me',
+    'formPassword' => 'Password',
+    'formPasswordConfirm' => 'Confirm Password',
+    'formRemember' => 'Remember me',
+    'formForgot' => 'Forgot your password?',
+    'formLogIn' => 'Log in',
+    'formEmailPasswordResetLink' => 'Email Password Reset Link',
+    'formForgotYourPassword' => 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
+    'formName' => 'Name',
+    'formAlreadyRegistered' => 'Already registered?',
+    'formBtnRegister' => 'Register',
+    'name' => 'Name',
+    'dateOfCreation' => 'Date of creation',
+    'actions' => 'Actions',
+    'remove' => 'Remove',
+    'toChange' => 'To change',
+    'createStatus' => 'Create a status',
+    'editedStatus' => 'Edited a status',
+    'toCreate' => 'To create',
+    'update' => 'To update',
+    'messages' => [
+        'createSuccess' => 'The status was created successfully',
+        'removedSuccess' => 'Status successfully deleted',
+    ]
+];

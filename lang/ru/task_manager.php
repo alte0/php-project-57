@@ -1,0 +1,37 @@
+<?php
+
+return [
+    'taskManager' => 'Менеджер задач',
+    'tasks' => 'Задачи',
+    'statuses' => 'Статусы',
+    'tags' => 'Метки',
+    'logout' => 'Выход',
+    'logIn' => 'Вход',
+    'registration' => 'Регистрация',
+    'greeting' => 'Привет от Хекслета!',
+    'aboutProject' => 'Это простой менеджер задач на Laravel.',
+    'pushBtn' => 'Нажми меня',
+    'formPassword' => 'Пароль',
+    'formPasswordConfirm' => 'Подтверждение',
+    'formRemember' => 'Запомнить меня',
+    'formForgot' => 'Забыли пароль?',
+    'formLogIn' => 'Войти',
+    'formEmailPasswordResetLink' => 'Сбросить пароль',
+    'formForgotYourPassword' => '',
+    'formName' => 'Имя',
+    'formAlreadyRegistered' => 'Уже зарегистрированы?',
+    'formBtnRegister' => 'Зарегистрировать',
+    'name' => 'Имя',
+    'dateOfCreation' => 'Дата создания',
+    'actions' => 'Действия',
+    'remove' => 'Удалить',
+    'toChange' => 'Изменить',
+    'createStatus' => 'Создать статус',
+    'editedStatus' => 'Изменение статуса',
+    'toCreate' => 'Создать',
+    'update' => 'Обновить',
+    'messages' => [
+        'createSuccess' => 'Статус успешно создан',
+        'removedSuccess' => 'Статус успешно удалён',
+    ]
+];

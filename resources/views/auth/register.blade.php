@@ -1,13 +1,13 @@
 <x-guest-layout>
     <h2 class="text-center">
-        <a href="{{ route('home') }}">{{ config('app.name') }}</a>
+        <a href="{{ route('home') }}">@lang('task_manager.taskManager')</a>
     </h2>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('task_manager.formName')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -21,7 +21,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('task_manager.formPassword')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -33,7 +33,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('task_manager.formPasswordConfirm')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
@@ -44,11 +44,11 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('task_manager.formAlreadyRegistered') }}
             </a>
 
             <x-primary-button class="ms-4">
-                {{ __('Register') }}
+                {{ __('task_manager.formBtnRegister') }}
             </x-primary-button>
         </div>
     </form>
