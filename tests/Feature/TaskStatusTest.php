@@ -40,7 +40,7 @@ class TaskStatusTest extends TestCase
             ]
         );
 
-        $response = $this->post(
+        $this->post(
             route('task_statuses.store'),
             [
                 'name' => $statusName,
