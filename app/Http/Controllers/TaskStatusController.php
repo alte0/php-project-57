@@ -33,8 +33,7 @@ class TaskStatusController extends Controller
      */
     public function store(StoreTaskStatus $request)
     {
-        $taskStatus = new TaskStatus();
-        $taskStatus->name = $request->input('name');
+        $taskStatus = new TaskStatus($request->validated());
         $taskStatus->save();
 
         return redirect()->route('task_statuses.index')->with('status', trans('task_manager.messages.createSuccess'));
@@ -69,8 +68,7 @@ class TaskStatusController extends Controller
             throw new AuthorizationException();
         }
 
-        $taskStatus->name = $request->input('name');
-        $taskStatus->update();
+        $taskStatus->update($request->validated());
 
         return redirect()->back();
     }
