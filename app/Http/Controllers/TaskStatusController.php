@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskStatus;
 use App\Models\TaskStatus;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class TaskStatusController extends Controller
 {
@@ -21,10 +20,6 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-        if (auth()->guest()) {
-            throw new AuthorizationException();
-        }
-
         return view('task_status.create');
     }
 
@@ -52,10 +47,6 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        if (auth()->guest()) {
-            throw new AuthorizationException();
-        }
-
         return view('task_status.edit', compact('taskStatus'));
     }
 
@@ -64,10 +55,6 @@ class TaskStatusController extends Controller
      */
     public function update(StoreTaskStatus $request, TaskStatus $taskStatus)
     {
-        if (auth()->guest()) {
-            throw new AuthorizationException();
-        }
-
         $taskStatus->update($request->validated());
 
         return redirect()->back();
@@ -78,9 +65,6 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        if (auth()->guest()) {
-            throw new AuthorizationException();
-        }
 
         $taskStatus->delete();
 
