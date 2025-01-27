@@ -32,23 +32,16 @@ class TaskStatusTest extends TestCase
     {
         $statusName = 'test_status_name';
 
-        $this->post(
-            route('login'),
-            [
-                'email' => $this->user->email,
-                'password' => $this->user->password,
-            ]
-        );
+        $this->actingAs($this->user)
+            ->post(
+                route(
+                    'task_statuses.store'),
+                    ['name' => $statusName,]
+                );
 
-        $this->post(
-            route('task_statuses.store'),
-            [
-                'name' => $statusName,
-            ]
-        );
+        $taskStatuses = TaskStatus::where('name', $statusName)->get()->toArray();
 
-        $taskStatus = TaskStatus::where('name', $statusName)->first();
-
-        $this->assertEquals($taskStatus->name, $statusName);
+        $this->assertCount(1, $taskStatuses);
+        $this->assertEquals($taskStatuses[0]['name'], $statusName);
     }
 }

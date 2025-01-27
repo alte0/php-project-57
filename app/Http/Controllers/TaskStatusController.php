@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskStatus;
 use App\Models\TaskStatus;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Auth;
 
 class TaskStatusController extends Controller
 {
+    private function ensureAuthorized()
+    {
+        if (!Auth::check()) {
+            throw new AuthorizationException();
+        }
+    }
+
     /**
      * Display a listing of the resource. Список статусов
      */
@@ -20,6 +29,8 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
+        $this->ensureAuthorized();
+
         return view('task_status.create');
     }
 
@@ -28,6 +39,8 @@ class TaskStatusController extends Controller
      */
     public function store(StoreTaskStatus $request)
     {
+        $this->ensureAuthorized();
+
         $taskStatus = new TaskStatus($request->validated());
         $taskStatus->save();
 
@@ -47,6 +60,8 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
+        $this->ensureAuthorized();
+
         return view('task_status.edit', compact('taskStatus'));
     }
 
@@ -55,6 +70,8 @@ class TaskStatusController extends Controller
      */
     public function update(StoreTaskStatus $request, TaskStatus $taskStatus)
     {
+        $this->ensureAuthorized();
+
         $taskStatus->update($request->validated());
 
         return redirect()->back();
@@ -65,6 +82,7 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
+        $this->ensureAuthorized();
 
         $taskStatus->delete();
 
