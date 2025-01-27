@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskStatus;
+use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
@@ -84,8 +85,15 @@ class TaskStatusController extends Controller
     {
         $this->ensureAuthorized();
 
-        $taskStatus->delete();
+        $tasksCount = Task::where('status_id', $taskStatus->id)->select('id')->count();
 
-        return redirect()->route('task_statuses.index')->with('status', trans('task_manager.messages.removedSuccess'));
+        if ($tasksCount === 0) {
+            $taskStatus->delete();
+            $message = trans('task_manager.messages.removedSuccess');
+        } else {
+            $message = trans('task_manager.messages.removedError');
+        }
+
+        return redirect()->route('task_statuses.index')->with('status', $message);
     }
 }

@@ -191,6 +191,10 @@ return [
 
     'attributes' => [
         'name' => 'имя',
+        'description' => 'описание',
+        'status_id' => 'статус',
+        'assigned_to_id' => 'исполнитель',
+        'labels[]' => 'метки',
     ],
 
 ];

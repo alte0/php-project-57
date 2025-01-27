@@ -189,6 +189,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'status_id' => 'status',
+        'assigned_to_id' => 'executor',
+        'labels[]' => 'labels',
+    ],
 
 ];

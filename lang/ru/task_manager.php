@@ -26,6 +26,7 @@ return [
     'actions' => 'Действия',
     'remove' => 'Удалить',
     'toChange' => 'Изменить',
+    'status' => 'Статус',
     'createStatus' => 'Создать статус',
     'editedStatus' => 'Изменение статуса',
     'toCreate' => 'Создать',
@@ -33,5 +34,20 @@ return [
     'messages' => [
         'createSuccess' => 'Статус успешно создан',
         'removedSuccess' => 'Статус успешно удалён',
-    ]
+        'removedError' => 'Не удалось удалить статус',
+    ],
+    'messagesTask' => [
+        'createSuccess' => 'Задача успешно создана',
+        'removedSuccess' => 'Задача успешно удалена',
+        'updateSuccess' => 'Задача успешно изменена',
+        'removedError' => 'Вы не можете удалить задачу',
+    ],
+    'author' => 'Автор',
+    'executor' => 'Исполнитель',
+    'apply' => 'Применить',
+    'toCreateTask' => 'Создать задачу',
+    'editedTask' => 'Изменение задачи',
+    'description' => 'Описание',
+    'labels' => 'Метки',
+    'viewTask' => 'Просмотр задачи',
 ];

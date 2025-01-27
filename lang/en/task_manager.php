@@ -26,6 +26,7 @@ return [
     'actions' => 'Actions',
     'remove' => 'Remove',
     'toChange' => 'To change',
+    'status' => 'Status',
     'createStatus' => 'Create a status',
     'editedStatus' => 'Edited a status',
     'toCreate' => 'To create',
@@ -33,5 +34,20 @@ return [
     'messages' => [
         'createSuccess' => 'The status was created successfully',
         'removedSuccess' => 'Status successfully deleted',
-    ]
+        'removedError' => 'Failed to delete status',
+    ],
+    'messagesTask' => [
+        'createSuccess' => 'Task successfully created',
+        'removedSuccess' => 'Task successfully deleted',
+        'updateSuccess' => 'The task was successfully modified',
+        'removedError' => 'You cannot delete the task',
+    ],
+    'author' => 'Author',
+    'executor' => 'Executor',
+    'apply' => 'Apply',
+    'toCreateTask' => 'To create a task',
+    'editedTask' => 'Edited task',
+    'description' => 'Description',
+    'labels' => 'Labels',
+    'viewTask' => 'View task',
 ];
