@@ -33,7 +33,7 @@ return [
     ],
     'boolean' => 'The :attribute field must be true or false.',
     'can' => 'The :attribute field contains an unauthorized value.',
-    'confirmed' => 'The :attribute field confirmation does not match.',
+    'confirmed' => ':attribute  и подтверждение не совпадают',
     'contains' => 'The :attribute field is missing a required value.',
     'current_password' => 'The password is incorrect.',
     'date' => 'The :attribute field must be a valid date.',
@@ -190,7 +190,7 @@ return [
     */
 
     'attributes' => [
-        'password' => 'Пароль',
+        'password' => 'пароль',
         'name' => 'имя',
         'description' => 'описание',
         'status_id' => 'статус',
