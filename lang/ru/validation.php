@@ -190,7 +190,7 @@ return [
     */
 
     'attributes' => [
-        'password' => 'пароль',
+        'password' => 'Пароль',
         'name' => 'имя',
         'description' => 'описание',
         'status_id' => 'статус',
