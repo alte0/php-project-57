@@ -85,7 +85,7 @@ class TaskStatusController extends Controller
     {
         $this->ensureAuthorized();
 
-        $tasksCount = Task::where('status_id', $taskStatus->id)->select('id')->count();
+        $tasksCount = Task::query()->where('status_id', $taskStatus->id)->select('id')->count();
 
         if ($tasksCount === 0) {
             $taskStatus->delete();

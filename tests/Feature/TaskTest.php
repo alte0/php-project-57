@@ -34,7 +34,7 @@ class TaskTest extends TestCase
 
     public function test_task_create()
     {
-        $this->actingAs($this->user)
+        $response = $this->actingAs($this->user)
             ->post(
                 route('tasks.store'),
                 [
@@ -42,13 +42,17 @@ class TaskTest extends TestCase
                     'description' => '',
                     'status_id' => $this->taskStatus->id,
                 ]
-            )
-            ->assertValid();
+            );
+
+        $response
+            ->assertValid()
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(route('tasks.index'));
     }
 
     public function test_task_show_screen_render()
     {
-        $lastRecordTask = Task::latest()->first();
+        $lastRecordTask = Task::query()->latest('id')->first();
 
         $this->get(route('tasks.show', ['task' => $lastRecordTask->id]))->assertStatus(200);
     }

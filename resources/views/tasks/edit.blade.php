@@ -82,17 +82,23 @@
                 <div class="text-rose-600">{{ $message }}</div>
                 @enderror
 
-{{--                TODO если нет меток то не отображается--}}
                 <div class="mt-2">
                     <label for="labels[]">@lang('task_manager.labels')</label>
                 </div>
                 <div>
-                    <select class="rounded border-gray-300 w-1/3 h-32" name="labels[]" id="labels[]" multiple>
-                        <option value="" selected="selected"></option>
-{{--                        TODO old value--}}
-{{--                        @foreach($ as $)
-                            <option value="{{ $->id }}">{{ $->name }}</option>
-                        @endforeach--}}
+                    <select
+                        class="rounded border-gray-300 w-1/3 h-32"
+                        name="labels[]"
+                        id="labels[]"
+                        multiple
+                        autocomplete="off"
+                    >
+                        @foreach($labels as $label)
+                            <option
+                                value="{{ $label->id }}"
+                                {{ \in_array($label->id, $taskLabels) ? 'selected' : '' }}
+                            >{{ $label->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 @error('labels[]')

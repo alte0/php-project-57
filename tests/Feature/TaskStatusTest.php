@@ -32,14 +32,19 @@ class TaskStatusTest extends TestCase
     {
         $statusName = 'test_status_name';
 
-        $this->actingAs($this->user)
+        $response = $this->actingAs($this->user)
             ->post(
                 route(
                     'task_statuses.store'),
                     ['name' => $statusName,]
                 );
 
-        $taskStatuses = TaskStatus::where('name', $statusName)->get()->toArray();
+        $response
+            ->assertValid()
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(route('task_statuses.index'));
+
+        $taskStatuses = TaskStatus::query()->where('name', $statusName)->get()->toArray();
 
         $this->assertCount(1, $taskStatuses);
         $this->assertEquals($taskStatuses[0]['name'], $statusName);

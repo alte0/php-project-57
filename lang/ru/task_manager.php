@@ -28,7 +28,9 @@ return [
     'toChange' => 'Изменить',
     'status' => 'Статус',
     'createStatus' => 'Создать статус',
+    'createLabel' => 'Создать метку',
     'editedStatus' => 'Изменение статуса',
+    'editedLabel' => 'Изменение метки',
     'toCreate' => 'Создать',
     'update' => 'Обновить',
     'messages' => [
@@ -42,6 +44,12 @@ return [
         'updateSuccess' => 'Задача успешно изменена',
         'removedError' => 'Вы не можете удалить задачу',
     ],
+    'messagesLabel' => [
+        'createSuccess' => 'Метка успешно создана',
+        'updateSuccess' => 'Метка успешно изменена',
+        'removedSuccess' => 'Метка успешно удалена',
+        'removedError' => 'Не удалось удалить метку',
+    ],
     'author' => 'Автор',
     'executor' => 'Исполнитель',
     'apply' => 'Применить',
@@ -50,4 +58,5 @@ return [
     'description' => 'Описание',
     'labels' => 'Метки',
     'viewTask' => 'Просмотр задачи',
+    'dataConfirm' => 'Вы уверены?',
 ];

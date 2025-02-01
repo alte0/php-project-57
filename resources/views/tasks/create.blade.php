@@ -67,11 +67,11 @@
                 </div>
                 <div>
                     <select class="rounded border-gray-300 w-1/3 h-32" name="labels[]" id="labels[]" multiple>
-                        <option value="" selected="selected"></option>
-{{--                        TODO old value--}}
-{{--                        @foreach($ as $)
-                            <option value="{{ $->id }}">{{ $->name }}</option>
-                        @endforeach--}}
+                    @foreach($labels as $label)
+                        <option
+                            value="{{ $label->id }}"
+                        >{{ $label->name }}</option>
+                    @endforeach
                     </select>
                 </div>
                 @error('labels[]')

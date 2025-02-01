@@ -28,7 +28,9 @@ return [
     'toChange' => 'To change',
     'status' => 'Status',
     'createStatus' => 'Create a status',
+    'createLabel' => 'Create a label',
     'editedStatus' => 'Edited a status',
+    'editedLabel' => 'Edit a label',
     'toCreate' => 'To create',
     'update' => 'To update',
     'messages' => [
@@ -42,6 +44,12 @@ return [
         'updateSuccess' => 'The task was successfully modified',
         'removedError' => 'You cannot delete the task',
     ],
+    'messagesLabel' => [
+        'createSuccess' => 'Label successfully created',
+        'updateSuccess' => 'The label was successfully modified',
+        'removedSuccess' => 'The label was successfully deleted',
+        'removedError' => 'You cannot delete the label',
+    ],
     'author' => 'Author',
     'executor' => 'Executor',
     'apply' => 'Apply',
@@ -50,4 +58,5 @@ return [
     'description' => 'Description',
     'labels' => 'Labels',
     'viewTask' => 'View task',
+    'dataConfirm' => 'Are you sure?',
 ];

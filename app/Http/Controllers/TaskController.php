@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTasksRequest;
+use App\Models\Label;
 use App\Models\Task;
+use App\Models\TaskLabel;
 use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -48,6 +51,7 @@ class TaskController extends Controller
             [
                 'taskStatuses' => TaskStatus::all(),
                 'users' => User::all(),
+                'labels' => Label::all(),
             ]
         );
     }
@@ -59,8 +63,17 @@ class TaskController extends Controller
     {
         $this->ensureAuthorized();
 
-        $task = new Task(\array_merge($request->validated(), ['created_by_id' => Auth::id()]));
-        $task->save();
+        DB::transaction(function () use ($request) {
+            $task = new Task(\array_merge($request->validated(), ['created_by_id' => Auth::id()]));
+            $task->save();
+            $task->labels()->attach(
+                $request->input('labels'),
+                [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+        });
 
         return redirect()->route('tasks.index')->with('messageTask', trans('task_manager.messagesTask.createSuccess'));
     }
@@ -70,7 +83,13 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view('tasks.show', ['task' => $task]);
+        return view(
+            'tasks.show',
+            [
+                'task' => $task,
+                'taskLabels' => $task->labels->toArray(),
+            ]
+        );
     }
 
     /**
@@ -86,6 +105,8 @@ class TaskController extends Controller
                 'task' => $task,
                 'taskStatuses' => TaskStatus::all(),
                 'users' => User::all(),
+                'labels' => Label::all(),
+                'taskLabels' => $task->labels->pluck('id')->toArray(),
             ]
         );
     }
@@ -97,7 +118,16 @@ class TaskController extends Controller
     {
         $this->ensureAuthorized();
 
-        $task->update($request->validated());
+        DB::transaction(function () use ($request, $task) {
+            $task->update($request->validated());
+            $task->labels()->sync(
+                $request->input('labels'),
+                [
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+        });
 
         return redirect()->route('tasks.index')->with('messageTask', trans('task_manager.messagesTask.updateSuccess'));
     }
@@ -111,6 +141,7 @@ class TaskController extends Controller
 
         if (Auth::id() === $task->created_by_id) {
             $task->delete();
+            $task->labels()->detach();
             $message = trans('task_manager.messagesTask.removedSuccess');
         } else {
             $message = trans('task_manager.messagesTask.removedError');

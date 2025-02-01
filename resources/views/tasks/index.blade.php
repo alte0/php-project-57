@@ -88,7 +88,7 @@
                     <td>
                         @if($task->created_by_id === $currentUser->id)
                         <a
-                            data-confirm="Вы уверены?"
+                            data-confirm="@lang('task_manager.dataConfirm')"
                             data-method="delete"
                             href="{{ route('tasks.destroy', ['task' => $task->id]) }}"
                             class="text-red-600 hover:text-red-900"

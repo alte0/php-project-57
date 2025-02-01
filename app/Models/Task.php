@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Task extends Model
@@ -16,7 +18,6 @@ class Task extends Model
         'status_id',
         'created_by_id',
         'assigned_to_id',
-//        'labels[]'
     ];
 
     /** Статус задачи
@@ -42,5 +43,13 @@ class Task extends Model
     public function author(): hasOne
     {
         return $this->hasOne(User::class, 'id', 'created_by_id');
+    }
+
+    /** Метки
+     * @return BelongsToMany
+     */
+    public function labels(): belongsToMany
+    {
+        return $this->belongsToMany(Label::class, 'task_labels', 'task_id', 'label_id');
     }
 }
