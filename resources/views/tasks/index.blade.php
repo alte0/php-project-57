@@ -17,9 +17,15 @@
                             name="filter[status_id]"
                             id="filter[status_id]"
                         >
-                            <option value="" selected>@lang('task_manager.status')</option>
+                            <option
+                                value=""
+                                {{ $formFilter['statusId'] === null ? 'selected' : '' }}
+                            >@lang('task_manager.status')</option>
                             @foreach($taskStatuses as $taskStatus)
-                            <option value="{{ $taskStatus->id }}">{{ $taskStatus->name }}</option>
+                            <option
+                                value="{{ $taskStatus->id }}"
+                                {{ $taskStatus->id === $formFilter['statusId'] ? 'selected' : '' }}
+                            >{{ $taskStatus->name }}</option>
                             @endforeach
                         </select>
                         <select
@@ -27,9 +33,15 @@
                             name="filter[created_by_id]"
                             id="filter[created_by_id]"
                         >
-                            <option value="" selected>@lang('task_manager.author')</option>
+                            <option
+                                value=""
+                                {{ $formFilter['createdById'] === null ? 'selected' : '' }}
+                                >@lang('task_manager.author')</option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option
+                                value="{{ $user->id }}"
+                                {{ $user->id === $formFilter['createdById'] ? 'selected' : '' }}
+                            >{{ $user->name }}</option>
                             @endforeach
                         </select>
                         <select
@@ -37,9 +49,15 @@
                             name="filter[assigned_to_id]"
                             id="filter[assigned_to_id]"
                         >
-                            <option value="" selected>@lang('task_manager.executor')</option>
+                            <option
+                                value=""
+                                {{ $formFilter['assignedToId'] === null ? 'selected' : '' }}
+                            >@lang('task_manager.executor')</option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option
+                                value="{{ $user->id }}"
+                                {{ $user->id === $formFilter['assignedToId'] ? 'selected' : '' }}
+                            >{{ $user->name }}</option>
                             @endforeach</select>
                         <button
                             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"

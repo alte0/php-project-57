@@ -9,6 +9,7 @@ use App\Models\TaskLabel;
 use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -24,17 +25,36 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $currentUser = auth()->user();
+        $queryTask = Task::query();
+        $formFilter = [
+            'statusId' => $request->integer('filter.status_id', null),
+            'createdById' => $request->integer('filter.created_by_id', null),
+            'assignedToId' => $request->integer('filter.assigned_to_id', null),
+        ];
+
+        if ($formFilter['statusId']) {
+            $queryTask->where('status_id', $formFilter['statusId']);
+        }
+
+        if ($formFilter['createdById']) {
+            $queryTask->where('created_by_id', $formFilter['createdById']);
+        }
+
+        if ($formFilter['assignedToId']) {
+            $queryTask->where('assigned_to_id', $formFilter['assignedToId']);
+        }
 
         return view(
             'tasks.index',
             [
-                'tasks' => Task::paginate(),
+                'tasks' => $queryTask->paginate(),
                 'taskStatuses' => TaskStatus::all(),
                 'users' => User::all(),
                 'currentUser' => $currentUser,
+                'formFilter' => $formFilter,
             ]
         );
     }
