@@ -86,7 +86,7 @@ class TaskStatusController extends Controller
         $this->ensureAuthorized();
 
         $hasTasks = Task::query()->where('status_id', $taskStatus->id)->exists();
-        dump($taskStatus);
+        dd($taskStatus);
 
         if ($hasTasks) {
             $message = trans('task_manager.messages.removedError');
