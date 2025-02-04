@@ -85,13 +85,14 @@ class TaskStatusController extends Controller
     {
         $this->ensureAuthorized();
 
-        $tasksCount = Task::query()->where('status_id', $taskStatus->id)->select('id')->count();
+        $hasTasks = Task::query()->where('status_id', $taskStatus->id)->exists();
+        dump($taskStatus);
 
-        if ($tasksCount === 0) {
+        if ($hasTasks) {
+            $message = trans('task_manager.messages.removedError');
+        } else {
             $taskStatus->delete();
             $message = trans('task_manager.messages.removedSuccess');
-        } else {
-            $message = trans('task_manager.messages.removedError');
         }
 
         return redirect()->route('task_statuses.index')->with('status', $message);
