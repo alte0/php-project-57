@@ -22,7 +22,10 @@ class TaskStatusController extends Controller
      */
     public function index()
     {
-        return view('task_status.index', ['statuses' => TaskStatus::query()->orderBy('created_at')->get()]);
+        return view(
+            'task_status.index',
+            ['statuses' => TaskStatus::query()->orderBy('created_at')->orderBy('name')->get()]
+        );
     }
 
     /**
