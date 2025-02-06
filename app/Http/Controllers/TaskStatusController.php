@@ -24,7 +24,7 @@ class TaskStatusController extends Controller
     {
         return view(
             'task_status.index',
-            ['statuses' => TaskStatus::query()->orderBy('created_at')->orderBy('name')->get()]
+            ['statuses' => TaskStatus::query()->orderBy('created_at')->get()]
         );
     }
 
