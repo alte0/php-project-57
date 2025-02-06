@@ -78,7 +78,7 @@ class TaskStatusController extends Controller
 
         $taskStatus->update($request->validated());
 
-        return redirect()->back();
+        return redirect()->route('task_statuses.index')->with('status', trans('task_manager.messages.updateSuccess'));
     }
 
     /**

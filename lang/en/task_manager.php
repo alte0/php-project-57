@@ -35,6 +35,7 @@ return [
     'update' => 'To update',
     'messages' => [
         'createSuccess' => 'The status was created successfully',
+        'updateSuccess' => 'Status changed successfully',
         'removedSuccess' => 'Status successfully deleted',
         'removedError' => 'Failed to delete status',
     ],

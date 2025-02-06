@@ -36,6 +36,7 @@ return [
     'messages' => [
         'createSuccess' => 'Статус успешно создан',
         'removedSuccess' => 'Статус успешно удалён',
+        'updateSuccess' => 'Статус успешно изменён',
         'removedError' => 'Не удалось удалить статус',
     ],
     'messagesTask' => [
