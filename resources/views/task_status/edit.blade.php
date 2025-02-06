@@ -13,6 +13,9 @@
                 <div class="mt-2">
                     <input class="rounded border-gray-300 w-1/3" type="text" name="name" id="name" value="{{ $taskStatus->name }}">
                 </div>
+                @error('name')
+                <div class="text-rose-600">{{ $message }}</div>
+                @enderror
                 <div class="mt-2">
                     <button
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
