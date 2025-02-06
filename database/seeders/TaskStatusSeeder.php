@@ -18,10 +18,10 @@ class TaskStatusSeeder extends Seeder
     public static function runManual(): void
     {
         DB::table('task_statuses')->insert([
-            ['name' => 'Новый', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'В работе', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'На тестировании', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Завершен', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Новый'],
+            ['name' => 'В работе'],
+            ['name' => 'На тестировании'],
+            ['name' => 'Завершен'],
         ]);
     }
 }
