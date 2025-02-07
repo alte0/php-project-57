@@ -26,6 +26,7 @@ class StoreTaskStatus extends FormRequest
             'name' => [
                 'required',
                 'string',
+                'max:255',
                 function ($attribute, $value, $fail) {
                     $exists = TaskStatus::query()->where('name', $value)->exists();
 
