@@ -51,6 +51,7 @@ return [
         'updateSuccess' => 'The label was successfully modified',
         'removedSuccess' => 'The label was successfully deleted',
         'removedError' => 'You cannot delete the label',
+        'uniqueError' => 'Task status name should be unique',
     ],
     'author' => 'Author',
     'executor' => 'Executor',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Label;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreLabelRequest extends FormRequest
@@ -22,7 +23,18 @@ class StoreLabelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) {
+                    $exist = Label::query()->where('name', $value)->exists();
+
+                    if ($exist) {
+                        $fail(trans('task_manager.messagesLabel.uniqueError'));
+                    }
+                }
+            ],
             'description' => ['nullable', 'string', 'max:255'],
         ];
     }
