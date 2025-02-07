@@ -38,6 +38,7 @@ return [
         'updateSuccess' => 'Status changed successfully',
         'removedSuccess' => 'Status successfully deleted',
         'removedError' => 'Failed to delete status',
+        'uniqueError' => 'Task status name should be unique',
     ],
     'messagesTask' => [
         'createSuccess' => 'Task successfully created',

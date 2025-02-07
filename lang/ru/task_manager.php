@@ -38,6 +38,7 @@ return [
         'removedSuccess' => 'Статус успешно удалён',
         'updateSuccess' => 'Статус успешно изменён',
         'removedError' => 'Не удалось удалить статус',
+        'uniqueError' => 'Статус с таким именем уже существует',
     ],
     'messagesTask' => [
         'createSuccess' => 'Задача успешно создана',

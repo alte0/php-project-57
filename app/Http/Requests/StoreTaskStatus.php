@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\TaskStatus;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTaskStatus extends FormRequest
@@ -22,7 +23,17 @@ class StoreTaskStatus extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string']
+            'name' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    $exists = TaskStatus::query()->where('name', $value)->exists();
+
+                    if ($exists) {
+                        $fail(trans('task_manager.messages.uniqueError'));
+                    }
+                }
+            ]
         ];
     }
 }
