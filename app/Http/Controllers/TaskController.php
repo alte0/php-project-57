@@ -30,20 +30,20 @@ class TaskController extends Controller
         $currentUser = auth()->user();
         $queryTask = Task::query();
         $formFilter = [
-            'statusId' => $request->integer('filter.status_id', null),
-            'createdById' => $request->integer('filter.created_by_id', null),
-            'assignedToId' => $request->integer('filter.assigned_to_id', null),
+            'statusId' => $request->integer('filter.status_id', 0),
+            'createdById' => $request->integer('filter.created_by_id', 0),
+            'assignedToId' => $request->integer('filter.assigned_to_id', 0),
         ];
 
-        if ($formFilter['statusId']) {
+        if ($formFilter['statusId'] > 0) {
             $queryTask->where('status_id', $formFilter['statusId']);
         }
 
-        if ($formFilter['createdById']) {
+        if ($formFilter['createdById'] > 0) {
             $queryTask->where('created_by_id', $formFilter['createdById']);
         }
 
-        if ($formFilter['assignedToId']) {
+        if ($formFilter['assignedToId'] > 0) {
             $queryTask->where('assigned_to_id', $formFilter['assignedToId']);
         }
 
@@ -140,13 +140,7 @@ class TaskController extends Controller
 
         DB::transaction(function () use ($request, $task) {
             $task->update($request->validated());
-            $task->labels()->sync(
-                $request->input('labels'),
-                [
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]
-            );
+            $task->labels()->sync($request->input('labels'));
         });
 
         return redirect()->route('tasks.index')->with('messageTask', trans('task_manager.messagesTask.updateSuccess'));
