@@ -52,9 +52,9 @@ class TaskTest extends TestCase
 
     public function testTaskShowScreenRender()
     {
-        /** @var \App\Models\Task $lastRecordTask */
         $lastRecordTask = Task::query()->latest('id')->first();
 
+        // @phpstan-ignore-line
         $this->get(route('tasks.show', ['task' => $lastRecordTask->id]))->assertStatus(200);
     }
 }

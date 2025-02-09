@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
+ * class Task
+ *
  * @property int $created_by_id
  * @property int $id
  */

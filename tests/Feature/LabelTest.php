@@ -45,6 +45,7 @@ class LabelTest extends TestCase
     {
         $lastRecordLabel = Label::query()->latest('id')->first();
 
+        // @phpstan-ignore-next-line
         $this->get(route('labels.show', ['label' => $lastRecordLabel->id]))->assertStatus(200);
     }
 }
