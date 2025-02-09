@@ -167,6 +167,6 @@ class TaskController extends Controller
             $message = trans('task_manager.messagesTask.removedError');
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect()->route('tasks.index')->with('message', $message);
     }
 }
