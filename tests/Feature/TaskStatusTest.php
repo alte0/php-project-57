@@ -33,11 +33,7 @@ class TaskStatusTest extends TestCase
         $statusName = 'test_status_name';
 
         $response = $this->actingAs($this->user)
-            ->post(
-                route(
-                    'task_statuses.store'),
-                    ['name' => $statusName,]
-                );
+            ->post(route('task_statuses.store'), ['name' => $statusName,]);
 
         $response
             ->assertValid()
