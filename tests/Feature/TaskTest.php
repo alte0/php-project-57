@@ -52,7 +52,7 @@ class TaskTest extends TestCase
 
     public function testTaskShowScreenRender()
     {
-        /** @var \App\Models\Task $lastRecordLabel */
+        /** @var \App\Models\Task $lastRecordTask */
         $lastRecordTask = Task::query()->latest('id')->first();
 
         $this->get(route('tasks.show', ['task' => $lastRecordTask->id]))->assertStatus(200);
