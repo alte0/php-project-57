@@ -49,10 +49,12 @@ test:
 #test-coverage:
 	#XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
 
-lint:
-	composer phpcs
-#lint:
-	#composer exec --verbose phpcs -- --standard=PSR12 src public
+lint-phpcs:
+	composer exec --verbose phpcs -- --standard=PSR12 ./
+
+phpstan:
+	#phpstan --memory-limit=2G --ansi analyse -c phpstan.neon
+	./vendor/bin/sail php ./vendor/bin/phpstan analyse --configuration=phpstan.neon
 
 lint-fix:
 	composer phpcbf
