@@ -49,6 +49,8 @@ jobs:
           node-version: '20'
       - name: Install
         run: make workflow
+      - name: dusk:install
+        run: php artisan dusk:install
       - name: Start Web server
         run: make startNoWait
       - name: Run linter
