@@ -54,7 +54,7 @@ class TaskTest extends TestCase
     {
         $lastRecordTask = Task::query()->latest('id')->first();
 
-        // @phpstan-ignore-line
+        // @phpstan-ignore-next-line
         $this->get(route('tasks.show', ['task' => $lastRecordTask->id]))->assertStatus(200);
     }
 }
