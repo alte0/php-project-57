@@ -43,7 +43,6 @@ class LabelTest extends TestCase
 
     public function testLabelShowScreenRender()
     {
-        /** @var \App\Models\Label $lastRecordLabel */
         $lastRecordLabel = Label::query()->latest('id')->first();
 
         $this->get(route('labels.show', ['label' => $lastRecordLabel->id]))->assertStatus(200);
