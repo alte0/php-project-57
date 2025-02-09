@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-/**
- * class ProfileController
- *
- * @property Carbon|null $email_verified_at
- */
 class ProfileController extends Controller
 {
     /**
