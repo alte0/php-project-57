@@ -18,17 +18,17 @@ class TaskStatusTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function test_task_statuses_index_screen_rendered()
+    public function testTaskStatusesIndexScreenRendered()
     {
         $this->get(route('task_statuses.index'))->assertStatus(200);
     }
 
-    public function test_task_statuses_create_screen_rendered_unauthorized()
+    public function testTaskStatusesCreateScreenRenderedUnauthorized()
     {
         $this->get(route('task_statuses.create'))->assertStatus(403);
     }
 
-    public function test_task_statuses_create()
+    public function testTaskStatusesCreate()
     {
         $statusName = 'test_status_name';
 

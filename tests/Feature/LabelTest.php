@@ -19,17 +19,17 @@ class LabelTest extends TestCase
         $this->user = User::factory()->create();
     }
 
-    public function test_label_index_screen_render()
+    public function testLabelIndexScreenRender()
     {
         $this->get(route('labels.index'))->assertStatus(200);
     }
 
-    public function test_label_create_screen_render_unauthorized()
+    public function testLabelCreateScreenRenderUnauthorized()
     {
         $this->get(route('labels.create'))->assertStatus(403);
     }
 
-    public function test_label_create()
+    public function testLabelCreate()
     {
         $this->actingAs($this->user)
             ->post(
@@ -41,7 +41,7 @@ class LabelTest extends TestCase
             ->assertValid();
     }
 
-    public function test_label_show_screen_render()
+    public function testLabelShowScreenRender()
     {
         $lastRecordLabel = Label::query()->latest('id')->first();
 

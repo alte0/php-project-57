@@ -22,17 +22,17 @@ class TaskTest extends TestCase
         $this->taskStatus = TaskStatus::factory()->create();
     }
 
-    public function test_task_index_screen_render()
+    public function testTaskIndexScreenRender()
     {
         $this->get(route('tasks.index'))->assertStatus(200);
     }
 
-    public function test_task_create_screen_render_unauthorized()
+    public function testTaskCreateScreenRenderUnauthorized()
     {
         $this->get(route('tasks.create'))->assertStatus(403);
     }
 
-    public function test_task_create()
+    public function testTaskCreate()
     {
         $response = $this->actingAs($this->user)
             ->post(
@@ -50,7 +50,7 @@ class TaskTest extends TestCase
             ->assertRedirect(route('tasks.index'));
     }
 
-    public function test_task_show_screen_render()
+    public function testTaskShowScreenRender()
     {
         $lastRecordTask = Task::query()->latest('id')->first();
 
