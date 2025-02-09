@@ -14,6 +14,7 @@
         <testsuite name="Browser">
             <directory>tests/Browser</directory>
             <exclude>tests/Browser</exclude>
+            <exclude>tests/DuskTestCase.php</exclude>
         </testsuite>
     </testsuites>
     <source>
