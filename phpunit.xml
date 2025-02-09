@@ -12,9 +12,7 @@
             <directory>tests/Feature</directory>
         </testsuite>
         <testsuite name="Browser">
-            <directory suffix="*.php">tests/Browser</directory>
-            <exclude>tests/Browser</exclude>
-            <exclude>tests/DuskTestCase.php</exclude>
+            <directory>tests/Browser</directory>
         </testsuite>
     </testsuites>
     <source>

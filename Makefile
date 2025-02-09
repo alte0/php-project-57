@@ -63,7 +63,7 @@ lint-fix:
 	composer phpcbf
 
 test-coverage:
-	XDEBUG_MODE=coverage composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+	XDEBUG_MODE=coverage composer exec --verbose phpunit --testsuite "Feature Tests" -- --coverage-clover build/logs/clover.xml
 
 compose:
 	docker-compose up
