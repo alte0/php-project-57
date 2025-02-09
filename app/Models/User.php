@@ -10,8 +10,6 @@ use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * Class User
- *
  * @property Carbon|null $email_verified_at
  * @property int $id
  */
