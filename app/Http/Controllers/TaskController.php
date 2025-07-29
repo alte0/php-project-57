@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTasksRequest;
 use App\Models\Label;
 use App\Models\Task;
-use App\Models\TaskLabel;
 use App\Models\TaskStatus;
 use App\Models\User;
+use AppSite\Infrastructure\CreateTask;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,17 +83,7 @@ class TaskController extends Controller
     {
         $this->ensureAuthorized();
 
-        DB::transaction(function () use ($request) {
-            $task = new Task(\array_merge($request->validated(), ['created_by_id' => Auth::id()]));
-            $task->save();
-            $task->labels()->attach(
-                $request->input('labels'),
-                [
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]
-            );
-        });
+        DB::transaction(fn() => (new CreateTask($request))->execute());
 
         return redirect()->route('tasks.index')->with('messageTask', trans('task_manager.messagesTask.createSuccess'));
     }

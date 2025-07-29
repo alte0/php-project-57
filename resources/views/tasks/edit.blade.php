@@ -51,6 +51,9 @@
                                         ($taskStatus->id == $task->status_id)
                                     ) ? 'selected' : ''
                                 }}
+
+                                @selected(($taskStatus->id == old('status_id')) || ($taskStatus->id == $task->status_id))
+
                             >{{ $taskStatus->name }}</option>
                         @endforeach
                     </select>
