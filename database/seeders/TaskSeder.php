@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Http\Requests\StoreTasksRequest;
 use App\Models\Label;
+use AppSite\Infrastructure\RandomUserId;
+use AppSite\Infrastructure\UserIdByLabels;
 use Illuminate\Http\Request;
 use App\Models\User;
 use AppSite\Infrastructure\CreateTask;
@@ -51,7 +53,7 @@ class TaskSeder extends Seeder
                 $formRequest->setRedirector(app('redirect'));
                 $formRequest->validateResolved();
 
-                (new CreateTask($formRequest))->execute();
+                (new CreateTask($formRequest, new RandomUserId(), new UserIdByLabels()))->execute();
             }
         }
     }

@@ -8,6 +8,8 @@ use App\Models\Task;
 use App\Models\TaskStatus;
 use App\Models\User;
 use AppSite\Infrastructure\CreateTask;
+use AppSite\Infrastructure\RandomUserId;
+use AppSite\Infrastructure\UserIdByLabels;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,7 +85,7 @@ class TaskController extends Controller
     {
         $this->ensureAuthorized();
 
-        DB::transaction(fn() => (new CreateTask($request))->execute());
+        DB::transaction(fn() => (new CreateTask($request, new RandomUserId(), new UserIdByLabels()))->execute());
 
         return redirect()->route('tasks.index')->with('messageTask', trans('task_manager.messagesTask.createSuccess'));
     }

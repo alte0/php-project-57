@@ -4,7 +4,6 @@ namespace AppSite\Infrastructure;
 
 use App\Http\Requests\StoreTasksRequest;
 use App\Models\Task;
-use App\Models\User;
 use App\Models\UserLabel;
 use AppSite\Application\UseCase\CreateTaskInterface;
 use Illuminate\Support\Collection;
@@ -12,10 +11,18 @@ use Illuminate\Support\Collection;
 final class CreateTask implements CreateTaskInterface
 {
     private StoreTasksRequest $request;
+    private RandomUserId $randomUserId;
+    private UserIdByLabels $userIdByLabels;
 
-    public function __construct(StoreTasksRequest $request)
+    public function __construct(
+        StoreTasksRequest $request,
+        RandomUserId      $randomUserIdInstance,
+        UserIdByLabels    $userIdByLabelsInstance
+    )
     {
         $this->request = $request;
+        $this->randomUserId = $randomUserIdInstance;
+        $this->userIdByLabels = $userIdByLabelsInstance;
     }
 
     public function execute(): void
@@ -24,7 +31,7 @@ final class CreateTask implements CreateTaskInterface
         $labelsSelected = $this->request->input('labels', []);
         $assignedUserId = $this->request->input('assigned_to_id');
 
-        $userIdByLabels = $this->getUserIdByLabels($labelsSelected, $currentUserId);
+        $userIdByLabels = $this->userIdByLabels->getUsersList($labelsSelected, $currentUserId);
 
         $taskAttributes = $this->request->validated();
         $taskAttributes['created_by_id'] = $currentUserId;
@@ -33,7 +40,7 @@ final class CreateTask implements CreateTaskInterface
             $collection = new Collection($userIdByLabels);
             $taskAttributes['assigned_to_id'] = $collection->random();
         } elseif ($assignedUserId === null) {
-            $randomUserId = $this->getRandomUserId($currentUserId);
+            $randomUserId = $this->randomUserId->getId($currentUserId);
 
             if ($randomUserId > 0) {
                 $taskAttributes['assigned_to_id'] = $assignedUserId;
@@ -49,47 +56,5 @@ final class CreateTask implements CreateTaskInterface
                 'updated_at' => now(),
             ]
         );
-    }
-
-    /** Получаем пользователей, у которых есть метки
-     * @param string|int[] $labels
-     * @param int $currentUserId
-     * @return array
-     */
-    public function getUserIdByLabels(array $labels, int $currentUserId): array
-    {
-        if (empty($labels)) {
-            return [];
-        }
-
-        $userIdLabels = UserLabel::query()
-            ->whereIn('label_id', $labels)
-            ->select('user_id')
-            ->get()
-            ->unique('user_id')
-            ->pluck('user_id')
-            ->filter(fn($value) => $value !== $currentUserId)
-            ->toArray();
-
-        return $userIdLabels;
-    }
-
-    /** Получаем случайного пользователя, исключая переданного
-     * @param int $currentUserId
-     * @return int
-     */
-    public function getRandomUserId(int $currentUserId): int
-    {
-        $userArr = User::query()
-            ->where('id', '!=', $currentUserId)
-            ->get()
-            ->random()
-            ->toArray();
-
-        if (!empty($userArr)) {
-            return $userArr['id'];
-        }
-
-        return 0;
     }
 }
