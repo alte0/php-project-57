@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             StaffSeeder::class,
             TaskStatusSeeder::class, // включая LabelStaffSeeder
-            TaskSeder::class
+            //TaskSeder::class
         ]);
     }
 }
