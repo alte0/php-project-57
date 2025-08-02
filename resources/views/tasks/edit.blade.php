@@ -45,15 +45,7 @@
                         @foreach($taskStatuses as $taskStatus)
                             <option
                                 value="{{ $taskStatus->id }}"
-                                {{
-                                    (
-                                        ($taskStatus->id == old('status_id')) ||
-                                        ($taskStatus->id == $task->status_id)
-                                    ) ? 'selected' : ''
-                                }}
-
                                 @selected(($taskStatus->id == old('status_id')) || ($taskStatus->id == $task->status_id))
-
                             >{{ $taskStatus->name }}</option>
                         @endforeach
                     </select>
@@ -71,12 +63,7 @@
                         @foreach($users as $user)
                             <option
                                 value="{{ $user->id }}"
-                                {{
-                                    (
-                                        ($user->id == old('assigned_to_id')) ||
-                                        ($user->id == $task->assigned_to_id )
-                                    ) ? 'selected' : ''
-                                }}
+                                @selected(($user->id == old('assigned_to_id')) || ($user->id == $task->assigned_to_id ))
                             >{{ $user->name }}</option>
                         @endforeach
                     </select>

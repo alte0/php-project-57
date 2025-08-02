@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 class TaskStatusTest extends TestCase
 {
+    use RefreshDatabase;
+
     protected User $user;
     public function setUp(): void
     {

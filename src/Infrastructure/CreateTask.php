@@ -21,7 +21,7 @@ final class CreateTask implements CreateTaskInterface
     public function execute(): void
     {
         $currentUserId = $this->request->user()->id;
-        $labelsSelected = $this->request->input('labels');
+        $labelsSelected = $this->request->input('labels', []);
         $assignedUserId = $this->request->input('assigned_to_id');
 
         $userIdByLabels = $this->getUserIdByLabels($labelsSelected, $currentUserId);

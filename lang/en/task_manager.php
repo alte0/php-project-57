@@ -4,6 +4,7 @@ return [
     'taskManager' => 'Task Manager',
     'tasks' => 'Tasks',
     'statuses' => 'Statuses',
+    'reports' => 'Report the tasks compare',
     'tags' => 'Tags',
     'logout' => 'Logout',
     'logIn' => 'Log In',

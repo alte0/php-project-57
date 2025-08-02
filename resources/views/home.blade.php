@@ -1,7 +1,7 @@
 @extends('layouts.tasks')
 
 @section('content')
-    <div class="mr-auto place-self-center lg:col-span-7">
+    <div class="mr-auto place-self-center lg:col-span-12">
         <h1
             class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white"
         >@lang('task_manager.greeting')</h1>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::get('/dashboard', function () {
 Route::resource('task_statuses', App\Http\Controllers\TaskStatusController::class);
 Route::resource('tasks', App\Http\Controllers\TaskController::class);
 Route::resource('labels', App\Http\Controllers\LabelController::class);
+Route::get('/report', [ReportController::class, 'index'])->name('report.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
