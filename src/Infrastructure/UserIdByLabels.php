@@ -11,7 +11,7 @@ class UserIdByLabels
      * @param int $userId
      * @return array
      */
-    public function getUsersList(array $labels, int $userId): array
+    public function getUserIdList(array $labels, int $userId): array
     {
         if (empty($labels)) {
             return [];
